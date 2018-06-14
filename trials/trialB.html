@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">`
+</head>
+
+<body>
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between">
+            <input type="number" id="val-A" placeholder="Enter number">
+            <input type="number" id="val-B" placeholder="Enter number">
+            <input type="number" id="val-C" placeholder="Enter number">
+            <input type="number" id="val-D" placeholder="Enter number">
+            <input type="number" id="val-E" placeholder="Enter number">
+            <input type="submit" value="Submit" id="input-btn" class="btn btn-primary">
+        </div>
+        <div class="bg-info rounded p-5">
+            <svg class="border border-light" width="500px" height="500px" viewBox="0 0 500 500">
+                <g id="lines" transform="matrix(1 0 0 -1 0 500)">
+                    <line id="line-A" x1="120" y1="0" x2="120" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-A1" x1="340" y1="0" x2="340" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-B" x1="120" y1="0" x2="180" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-B1" x1="340" y1="0" x2="280" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-C" x1="180" y1="0" x2="180" y2="0" stroke="black" stroke-width="1" stroke-linecap="round" />
+                    <line id="line-C1" x1="280" y1="0" x2="280" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-D" x1="180" y1="0" x2="180" y2="0" stroke="black" stroke-width="1" stroke-linecap="round" />
+                    <line id="line-D1" x1="280" y1="0" x2="280" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-E" x1="180" y1="0" x2="180" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                    <line id="line-E1" x1="280" y1="0" x2="280" y2="0" stroke="black" stroke-width="1" stroke-linecap="round"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+        // ##############################
+        // script with number input
+        // ##############################
+
+        let minA = 0,
+            maxA = 50,
+            minB = 50,
+            maxB = 70,
+            minC = 70,
+            maxC = 250,
+            minD = 250,
+            maxD = 350,
+            minE = 350,
+            maxE = 450;
+
+        const inputBtn = document.querySelector("#input-btn"),
+            inputValA = document.querySelector("#val-A"),
+            inputValB = document.querySelector("#val-B"),
+            inputValC = document.querySelector("#val-C"),
+            inputValD = document.querySelector("#val-D"),
+            inputValE = document.querySelector("#val-E"),
+            lineA = document.querySelector("#line-A"),
+            lineA1 = document.querySelector("#line-A1"),
+            lineB = document.querySelector("#line-B"),
+            lineB1 = document.querySelector("#line-B1"),
+            lineC = document.querySelector("#line-C"),
+            lineC1 = document.querySelector("#line-C1"),
+            lineD = document.querySelector("#line-D"),
+            lineD1 = document.querySelector("#line-D1"),
+            lineE = document.querySelector("#line-E"),
+            lineE1 = document.querySelector("#line-E1");
+
+        inputBtn.addEventListener("click", function() {
+            let valA = inputValA.value,
+                valB = inputValB.value,
+                valC = inputValC.value,
+                valD = inputValD.value,
+                valE = inputValE.value;
+
+            //console.log(valA, valB, valC, valD, valE);
+
+            // if any value is left unfilled then prompt user to fill the value
+            if ((valA < minA || valA > maxA || valA == "") || (valB < minB || valB > maxB || valB == "") || (
+                    valC < minC || valC > maxC || valC == "") || (valD < minD || valD > maxD || valD == "") ||
+                (valE < minE || valE > maxE || valE == "")) {
+
+                // console.log user prompt
+                console.log("Please fill all the values");
+
+                // else all values are filled then assign those values as x1, x2 values for 
+                // the lines. The end point of the previous line will be the origin point of 
+                // the next.
+            } else {
+                // lineA's point of origin (x1) is 0. It's end point (x2) is assigned the
+                // value extracted from the first input from the left (valA). 
+                lineA.setAttribute("y2", valA);
+                lineA1.setAttribute("y2", valA);
+
+                // if lineA's value is 0 then the origin point for the next line will be
+                // the min value assigned to its input (valB), which is the second input from 
+                // the left   
+                if ((lineA.getAttribute("y2") === minA) && (lineA1.getAttribute("y2") === minA)) {
+                    lineB.setAttribute("y1", minB);
+                    lineB1.setAttribute("y1", minB);
+
+                    // else the orgin point for lineB (x1) will be value extracted from 
+                    // valA (the first input from the left)
+                } else {
+                    lineB.setAttribute("y1", valA);
+                    lineB1.setAttribute("y1", valA);
+                }
+                // set the value extracted from valB as the x2 of lineB 
+                lineB.setAttribute("y2", valB);
+                lineB1.setAttribute("y2", valB);
+
+                // if lineB's x2 equals 50 then set lineC's x1 as the min value extracted 
+                // from valC (third input from the left)
+                if ((lineB.getAttribute("y2") === minB) && (lineB1.getAttribute("y2") === minB)) {
+                    lineC.setAttribute("y1", minC);
+                    lineC1.setAttribute("y1", minC);
+                    // else set lineC's x1 as valB
+                } else {
+                    lineC.setAttribute("y1", valB);
+                    lineC1.setAttribute("y1", valB);
+                }
+                // set lineC's x2 to valC
+                lineC.setAttribute("y2", valC);
+                lineC1.setAttribute("y2", valC);
+
+                // if lineC's x2 equals 100 set lineD's x1 to valD's minimum value
+                if ((lineC.getAttribute("y2") === minC) && (lineC1.getAttribute("y2") === minC)) {
+                    lineD.setAttribute("y1", minD);
+                    lineD1.setAttribute("y1", minD);
+                    // else set lineD's x1 to valC
+                } else {
+                    lineD.setAttribute("y1", valC);
+                    lineD1.setAttribute("y1", valC);
+                }
+                // set lineC's x2 to valD 
+                lineD.setAttribute("y2", valD);
+                lineD1.setAttribute("y2", valD);
+
+                // if lineD's x2 equals 200 set lineD's x1 to valD's minimum value
+                if ((lineD.getAttribute("y2") === minD) && (lineD1.getAttribute("y2") === minD)) {
+                    lineE.setAttribute("y1", minE);
+                    lineE1.setAttribute("y1", minE);
+                } else {
+                    lineE.setAttribute("y1", valD);
+                    lineE1.setAttribute("y1", valD);
+                }
+                lineE.setAttribute("y2", valE);
+                lineE1.setAttribute("y2", valE);
+            }
+        })
+    </script>
+</body>
+
+</html>
+
+</html>

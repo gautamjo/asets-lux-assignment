@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chimney Svg</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    <style>
+        @keyframes animate-ball {
+            0% {
+                fill: blue;
+                stroke: greenyellow;
+                stroke-width: 5px;
+            }
+            50% {
+                fill: purple;
+                stroke: orange;
+                stroke-width: 7px;
+                transform: translateX(50px);
+            }
+            100% {
+                fill: red;
+                stroke: blueviolet;
+                stroke-width: 10px;
+                transform: translateX(100px);
+            }
+        }
+        
+        .ball {
+            animation-name: animate-ball;
+            animation-duration: 2s;
+            animation-delay: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-timing-function: ease-in-out;
+            animation-fill-mode: forwards;
+        }
+        
+        .danger-cont {
+            position: relative;
+            height: 200px;
+        }
+        
+        .danger {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: 50px auto 50px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="bg-warning rounded p-5">
+            <svg width="450px" height="110px" viewBox="0 0 450 110">
+            <circle class="ball" fill="slateblue" stroke="white" stroke-width="3" cx="50" cy="55" r="45"/>
+        </svg>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-around">
+            <div>
+                <label class="text-muted lead mr-1">Circle</label>
+                <input id="c-slider" type="range" min="0" max="45" step="5" oninput="changeValCircle()" />
+            </div>
+            <div>
+                <label class="text-muted lead mr-1">Rectangle</label>
+                <input id="r-slider" type="range" min="0" max="100" step="5" oninput="changeValRect()" />
+            </div>
+            <div>
+                <label class="text-muted lead mr-1">Line</label>
+                <input id="l-slider" type="range" min="600" max="800" step="5" oninput="changeValLine()" />
+            </div>
+
+        </div>
+        <div class="bg-danger rounded p-5 danger-cont">
+            <svg class="danger" width="825px" height="110px" viewBox="0 0 825 110">
+                <circle class="ball-2" fill="limegreen" stroke="green" stroke-width="3" cx="125" cy="55" r="25"/>
+                <rect class="rect-1" fill="yellow" stroke="gold" stroke-width="3" x="400" y="25" width="50" height="50"/>
+                <line class="line-1" stroke="white" x1="600" y1="55" x2="700" y2="55" /> 
+            </svg>
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <div class="d-flex justify-content-around">
+            <div class="A">
+                <input id="slider-A" type="range" min="0" max="50" step=1 value="0" oninput="changeValLineA()">
+            </div>
+            <div class="B">
+                <input id="slider-B" type="range" min="0" max="100" step=1 value="0" oninput="changeValLineB()">
+            </div>
+        </div>
+        <div class="bg-success rounded p-5">
+            <svg width="825px" height="110px" viewBox="0 0 825 110">
+                <line class="line-A" x1="0" y1="55" x2="0" y2="55" stroke="white" stroke-width="5" stroke-linecap="round"/>
+                <line class="line-B" x1="0" y1="55" x2="100" y2="55" stroke="white" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between">
+            <input type="number" id="val-AR" placeholder="Enter number">
+            <input type="number" id="val-BR" placeholder="Enter number">
+            <input type="number" id="val-CR" placeholder="Enter number">
+            <input type="number" id="val-DR" placeholder="Enter number">
+            <input type="number" id="val-ER" placeholder="Enter number">
+            <input type="submit" value="Submit" id="input-btnR" class="btn btn-primary">
+        </div>
+        <div class="bg-secondary rounded p-5">
+            <svg width="825px" height="110px" viewBox="0 0 825 110">
+                <line id="line-AR" x1="0" y1="55" x2="0" y2="55" stroke="red" stroke-width="5" stroke-linecap="round"/>
+                <line id="line-BR" x1="0" y1="55" x2="0" y2="55" stroke="blue" stroke-width="5" stroke-linecap="round"/>
+                <line id="line-CR" x1="0" y1="55" x2="0" y2="55" stroke="yellow" stroke-width="5" stroke-linecap="round"/>
+                <line id="line-DR" x1="0" y1="55" x2="0" y2="55" stroke="slateblue" stroke-width="5" stroke-linecap="round"/>
+                <line id="line-ER" x1="0" y1="55" x2="0" y2="55" stroke="pink" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between">
+            <input type="number" id="val-A" placeholder="Enter number">
+            <input type="number" id="val-B" placeholder="Enter number">
+            <input type="number" id="val-C" placeholder="Enter number">
+            <input type="number" id="val-D" placeholder="Enter number">
+            <input type="number" id="val-E" placeholder="Enter number">
+            <input type="submit" value="Submit" id="input-btn" class="btn btn-primary">
+        </div>
+        <div class="bg-info rounded p-5">
+            <svg class="border border-light" width="500px" height="500px" viewBox="0 0 500 500">
+            <g transform="matrix(1 0 0 -1 0 500)">
+                    <line id="line-A" x1="180" y1="0" x2="180" y2="0" stroke="red" stroke-width="5" stroke-linecap="round"/>
+                    <line id="line-B" x1="180" y1="0" x2="180" y2="0" stroke="blue" stroke-width="5" stroke-linecap="round"/>
+                    <line id="line-C" x1="180" y1="0" x2="180" y2="0" stroke="yellow" stroke-width="5" stroke-linecap="round"/>
+                    <line id="line-D" x1="180" y1="0" x2="180" y2="0" stroke="slateblue" stroke-width="5" stroke-linecap="round"/>
+                    <line id="line-E" x1="180" y1="0" x2="180" y2="0" stroke="pink" stroke-width="5" stroke-linecap="round"/>
+                </g>
+                </svg>
+        </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+        // ###########################
+        // script with range slider
+        // ###########################
+
+        function changeValCircle() {
+            let val = document.querySelector('#c-slider').value;
+            document.querySelector(".ball-2").setAttribute("r", val);
+        };
+
+        function changeValRect() {
+            let val = document.querySelector('#r-slider').value;
+            document.querySelector(".rect-1").setAttribute("width", val);
+        }
+
+        function changeValLine() {
+            let val = document.querySelector('#l-slider').value;
+            document.querySelector(".line-1").setAttribute("x2", val);
+        }
+
+        function changeValLineA() {
+            let val = document.querySelector("#slider-A").value;
+            document.querySelector(".line-A").setAttribute("x2", val);
+            console.log(document.querySelector(".line-B").getAttribute("x1"));
+        }
+
+        function changeValLineB() {
+            let val = document.querySelector("#slider-B").value;
+            document.querySelector(".line-B").setAttribute("x2", val);
+            console.log(document.querySelector(".line-B").getAttribute("x2"));
+        }
+
+        //***********************************************************************
+
+        // ##############################
+        // script with number input
+        // ##############################
+
+        let minA = 0,
+            maxA = 50,
+            minB = 50,
+            maxB = 100,
+            minC = 100,
+            maxC = 200,
+            minD = 200,
+            maxD = 300,
+            minE = 300,
+            maxE = 400;
+
+        const inputBtn = document.querySelector("#input-btn"),
+            inputValA = document.querySelector("#val-A"),
+            inputValB = document.querySelector("#val-B"),
+            inputValC = document.querySelector("#val-C"),
+            inputValD = document.querySelector("#val-D"),
+            inputValE = document.querySelector("#val-E"),
+            lineA = document.querySelector("#line-A"),
+            lineB = document.querySelector("#line-B"),
+            lineC = document.querySelector("#line-C"),
+            lineD = document.querySelector("#line-D"),
+            lineE = document.querySelector("#line-E");
+
+        inputBtn.addEventListener("click", function() {
+            let valA = inputValA.value,
+                valB = inputValB.value,
+                valC = inputValC.value,
+                valD = inputValD.value,
+                valE = inputValE.value;
+
+            //console.log(valA, valB, valC, valD, valE);
+
+            // if any value is left unfilled then prompt user to fill the value
+            if ((valA < minA || valA > maxA || valA == "") || (valB < minB || valB > maxB || valB == "") || (valC < minC || valC > maxC || valC == "") || (valD < minD || valD > maxD || valD == "") || (valE < minE || valE > maxE || valE == "")) {
+
+                // console.log user prompt
+                console.log("Please fill all the values");
+
+                // else all values are filled then assign those values as x1, x2 values for 
+                // the lines. The end point of the previous line will be the origin point of 
+                // the next.
+            } else {
+                // lineA's point of origin (x1) is 0. It's end point (x2) is assigned the
+                // value extracted from the first input from the left (valA). 
+                lineA.setAttribute("y2", valA);
+
+                // if lineA's value is 0 then the origin point for the next line will be
+                // the min value assigned to its input (valB), which is the second input from 
+                // the left   
+                if (lineA.getAttribute("y2") === minA) {
+                    lineB.setAttribute("y1", minB);
+
+                    // else the orgin point for lineB (x1) will be value extracted from 
+                    // valA (the first input from the left)
+                } else {
+                    lineB.setAttribute("y1", valA);
+                }
+                // set the value extracted from valB as the x2 of lineB 
+                lineB.setAttribute("y2", valB);
+
+                // if lineB's x2 equals 50 then set lineC's x1 as the min value extracted 
+                // from valC (third input from the left)
+                if (lineB.getAttribute("y2") === minB) {
+                    lineC.setAttribute("y1", minC);
+                    // else set lineC's x1 as valB
+                } else {
+                    lineC.setAttribute("y1", valB);
+                }
+                // set lineC's x2 to valC
+                lineC.setAttribute("y2", valC);
+
+                // if lineC's x2 equals 100 set lineD's x1 to valD's minimum value
+                if (lineC.getAttribute("y2") === minC) {
+                    lineD.setAttribute("y1", minD);
+                    // else set lineD's x1 to valC
+                } else {
+                    lineD.setAttribute("y1", valC);
+                }
+                // set lineC's x2 to valD 
+                lineD.setAttribute("y2", valD);
+
+                // if lineD's x2 equals 200 set lineD's x1 to valD's minimum value
+                if (lineD.getAttribute("y2") === minD) {
+                    lineE.setAttribute("y1", minE);
+                } else {
+                    lineE.setAttribute("y1", valD);
+                }
+                lineE.setAttribute("y2", valE);
+            }
+        })
+    </script>
+</body>
+
+</html>
+
+</html>
