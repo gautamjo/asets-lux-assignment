@@ -104,7 +104,7 @@ function showAlert(msg, className) {
         let elem = document.querySelector(".card-body")
         // insert alert
         elem.insertBefore(h4, elem.childNodes[0]);
-        // timeout after 3 seconds
+        // timeout after 1 seconds
         setTimeout(function() {
             document.querySelector(".alert").remove();
         }, 1000);
